@@ -1,19 +1,15 @@
-class `Admin::DashboardController` < `Admin::BaseController`
 
-  http_basic_authenticate_with name: ENV["HTTP_BASIC_USER"], password: ENV["HTTP_BASIC_PASSWORD"]
+<h1>Admin Dashboard</h1>
 
-  def show
-    @number_of_products = Product.count
-    @number_of_categories = Category.count
-  end
-end
-
-# Path: app/views/admin/dashboard/show.html.erb
-
-# <h1>Admin::Dashboard#show</h1>
-# <p>Find me in app/views/admin/dashboard/show.html.erb</p>
-
-# def show 
-#   @number_of_products = Product.count
-#   @number_of_categories = Category.count
-# end
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Products</h2>
+      <p><%= @product_count %></p>
+    </div>
+    <div class="col-md-6">
+      <h2>Categories</h2>
+      <p><%= @category_count %></p>
+    </div>
+  </div>
+</div>
