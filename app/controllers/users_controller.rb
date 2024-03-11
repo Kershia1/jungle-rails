@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = user.new(user_params)
+    # puts user_params.inspect
+    user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
       redirect_to '/'
