@@ -15,13 +15,28 @@ RSpec.describe User, type: :model do
       @user.save
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
-  end
-end
 
-# email should be unique (not case sensitive)
+  # email should be unique (not case sensitive)
+    # it 'should not save the user when email is not unique' do
+    #   @user_1 = User.new(name: 'Jane', email: 'j.doe.smith@yahoo.com', password: 'passwordZ0', password_confirmation: 'passwordZ0')
+    #   @user_1.save
+    #   @user_2 = User.new(name: 'Joey', email: 'j.doe.smith@yahoo.com', password: 'password0', password_confirmation: 'password0')
+    #   @user_2.save
+    #   expect(@user_2.errors.full_messages).to include("Email has already been taken")
+    # end
 
-#  Define a new class method authenticate_with_credentials on the User model
+    it 'should not save the user when email is not unique' do
+      @user_1 = User.new(name: 'Jane', email: 'j.doe.smith@yahoo.com'.downcase, password: 'passwordZ0', password_confirmation: 'passwordZ0')
+      @user_1.save
+      @user_2 = User.new(name: 'Joey', email: 'J.DOE.SMITH@YAHOO.COM'.downcase, password: 'password0', password_confirmation: 'password0')
+      @user_2.save
+      expect(@user_2.errors.full_messages).to include("Email has already been taken")
+    end
+    #  Define a new class method authenticate_with_credentials on the User model
 
 # Edge cases to consider:
 # email has white spaces around it
 # email is in different cases
+
+  end
+end
