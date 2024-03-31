@@ -1,8 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Users, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe User, type: :model do
+  describe 'Validation' do
+
+    it 'should save a new user only when all required fields are filled' do
+      @user = User.new(name: 'Jane', email: 'j.doe.smith@yahoo.com', password: 'passwordZ0', password_confirmation: 'passwordZ0')
+      expect(@user).to be_valid
+    end
+  end
 end
+
+
+
+
 # define validations specs for the User model
 
 # password and password_confirmation should match
